@@ -14,7 +14,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario", unique = true)
-    Integer id_usuario;
+    int id_usuario;
 
     @Column(name = "usuario")
     private String usuario;
@@ -26,20 +26,14 @@ public class Usuario {
     private String est_usuario;
 
     public Usuario() {
+        super();
     }
 
-    public Usuario(Integer id_usuario, String usuario, String contrasena, String est_usuario) {
-        this.id_usuario = id_usuario;
-        this.usuario = usuario;
-        this.contrasena = contrasena;
-        this.est_usuario = est_usuario;
-    }
-
-    public Integer getId_usuario() {
+    public int getId_usuario() {
         return id_usuario;
     }
 
-    public void setId_usuario(Integer id_usuario) {
+    public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
     }
 
@@ -65,11 +59,6 @@ public class Usuario {
 
     public void setEst_usuario(String est_usuario) {
         this.est_usuario = est_usuario;
-    }
-
-    @Override
-    public String toString() {
-        return "Usuario{" + "id_usuario=" + id_usuario + ", usuario=" + usuario + ", contrasena=" + contrasena + ", est_usuario=" + est_usuario + '}';
     }
 
 }//fin()

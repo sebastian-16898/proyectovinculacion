@@ -16,7 +16,7 @@ public class Modalidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_modalidad", unique = true)
-    Integer id_modalidad;
+    int id_modalidad;
 
     @Column(name = "descripcion")
     private String descripcion;
@@ -30,20 +30,14 @@ public class Modalidad {
     private Date hora_fin;
 
     public Modalidad() {
+        super();
     }
 
-    public Modalidad(Integer id_modalidad, String descripcion, Date hora_inicio, Date hora_fin) {
-        this.id_modalidad = id_modalidad;
-        this.descripcion = descripcion;
-        this.hora_inicio = hora_inicio;
-        this.hora_fin = hora_fin;
-    }
-
-    public Integer getId_modalidad() {
+    public int getId_modalidad() {
         return id_modalidad;
     }
 
-    public void setId_modalidad(Integer id_modalidad) {
+    public void setId_modalidad(int id_modalidad) {
         this.id_modalidad = id_modalidad;
     }
 
@@ -69,11 +63,6 @@ public class Modalidad {
 
     public void setHora_fin(Date hora_fin) {
         this.hora_fin = hora_fin;
-    }
-
-    @Override
-    public String toString() {
-        return "Modalidad{" + "id_modalidad=" + id_modalidad + ", descripcion=" + descripcion + ", hora_inicio=" + hora_inicio + ", hora_fin=" + hora_fin + '}';
     }
 
 }//fin()

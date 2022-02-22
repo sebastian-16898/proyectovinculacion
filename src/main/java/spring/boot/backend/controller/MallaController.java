@@ -1,7 +1,6 @@
 package spring.boot.backend.controller;
 
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,40 +10,39 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import spring.boot.backend.interfaces.MallaRepository;
 import spring.boot.backend.modelo.Malla;
+import spring.boot.backend.service.MallaService;
 
 @RestController
 @RequestMapping(path = "/malla")
 public class MallaController {
 
     @Autowired
-    private MallaRepository repo;
+    private MallaService ms;
 
     @PostMapping("/add")
-    public Malla add(@RequestBody Malla m) {
-        return repo.save(m);
+    public boolean add(@RequestBody Malla m) {
+        return ms.addMalla(m);
     }
 
     @GetMapping("/views")
     public List<Malla> views() {
-        return repo.findAll();
+        return ms.list();
     }
 
     @GetMapping("/views/{val}")
-    public Optional<Malla> views(@PathVariable Integer val) {
-        return repo.findById(val);
+    public Malla views(@PathVariable int val) {
+        return ms.findById(val);
     }
 
     @PutMapping("/update")
-    public Malla views(@RequestBody Malla m) {
-        return repo.save(m);
+    public boolean views(@RequestBody Malla m) {
+        return ms.addMalla(m);
     }
 
-    @DeleteMapping("/delete/{val}")
-    public String delete(@PathVariable Integer m) {
-        repo.deleteById(m);
-        return "Id : " + m + " delete";
+    @DeleteMapping("/delete/{id_malla}")
+    public boolean delete(@PathVariable("id_malla") int m) {
+        return ms.deleteById(m);
     }
 
 }//fin()

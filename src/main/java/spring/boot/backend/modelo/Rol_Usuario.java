@@ -18,7 +18,7 @@ public class Rol_Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_RolUsuario", unique = true)
-    Integer id_RolUsuario;
+    int id_RolUsuario;
 
     @Column(name = "estado")
     private Boolean estado;
@@ -34,20 +34,14 @@ public class Rol_Usuario {
     private Rol id_rol;
 
     public Rol_Usuario() {
+        super();
     }
 
-    public Rol_Usuario(Integer id_RolUsuario, Boolean estado, Usuario id_usuario, Rol id_rol) {
-        this.id_RolUsuario = id_RolUsuario;
-        this.estado = estado;
-        this.id_usuario = id_usuario;
-        this.id_rol = id_rol;
-    }
-
-    public Integer getId_RolUsuario() {
+    public int getId_RolUsuario() {
         return id_RolUsuario;
     }
 
-    public void setId_RolUsuario(Integer id_RolUsuario) {
+    public void setId_RolUsuario(int id_RolUsuario) {
         this.id_RolUsuario = id_RolUsuario;
     }
 
@@ -73,11 +67,6 @@ public class Rol_Usuario {
 
     public void setId_rol(Rol id_rol) {
         this.id_rol = id_rol;
-    }
-
-    @Override
-    public String toString() {
-        return "Rol_Usuario{" + "id_RolUsuario=" + id_RolUsuario + ", estado=" + estado + ", id_usuario=" + id_usuario + ", id_rol=" + id_rol + '}';
     }
 
 }//fin()

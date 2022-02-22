@@ -1,7 +1,6 @@
 package spring.boot.backend.controller;
 
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,40 +10,39 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import spring.boot.backend.interfaces.RolRepository;
 import spring.boot.backend.modelo.Rol;
+import spring.boot.backend.service.RolService;
 
 @RestController
 @RequestMapping(path = "/rol")
 public class RolController {
 
     @Autowired
-    private RolRepository repo;
+    private RolService rs;
 
     @PostMapping("/add")
-    public Rol add(@RequestBody Rol r) {
-        return repo.save(r);
+    public boolean add(@RequestBody Rol r) {
+        return rs.addRol(r);
     }
 
     @GetMapping("/views")
     public List<Rol> views() {
-        return repo.findAll();
+        return rs.list();
     }
 
     @GetMapping("/views/{val}")
-    public Optional<Rol> views(@PathVariable Integer val) {
-        return repo.findById(val);
+    public Rol views(@PathVariable int val) {
+        return rs.findById(val);
     }
 
     @PutMapping("/update")
-    public Rol views(@RequestBody Rol r) {
-        return repo.save(r);
+    public boolean views(@RequestBody Rol r) {
+        return rs.addRol(r);
     }
 
-    @DeleteMapping("/delete/{val}")
-    public String delete(@PathVariable Integer r) {
-        repo.deleteById(r);
-        return "Id : " + r + " delete";
+    @DeleteMapping("/delete/{id_rol}")
+    public boolean delete(@PathVariable("id_rol") int r) {
+        return rs.deleteById(r);
     }
 
 }//fin()

@@ -1,7 +1,6 @@
 package spring.boot.backend.controller;
 
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,40 +10,39 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import spring.boot.backend.interfaces.Rol_UsuarioRepository;
 import spring.boot.backend.modelo.Rol_Usuario;
+import spring.boot.backend.service.Rol_UsuarioService;
 
 @RestController
 @RequestMapping(path = "/rolusuario")
 public class Rol_UsuarioController {
 
     @Autowired
-    private Rol_UsuarioRepository repo;
+    private Rol_UsuarioService rus;
 
     @PostMapping("/add")
-    public Rol_Usuario add(@RequestBody Rol_Usuario ru) {
-        return repo.save(ru);
+    public boolean add(@RequestBody Rol_Usuario ru) {
+        return rus.addRol_Usuario(ru);
     }
 
     @GetMapping("/views")
     public List<Rol_Usuario> views() {
-        return repo.findAll();
+        return rus.list();
     }
 
     @GetMapping("/views/{val}")
-    public Optional<Rol_Usuario> views(@PathVariable Integer val) {
-        return repo.findById(val);
+    public Rol_Usuario views(@PathVariable int val) {
+        return rus.findById(val);
     }
 
     @PutMapping("/update")
-    public Rol_Usuario views(@RequestBody Rol_Usuario ru) {
-        return repo.save(ru);
+    public boolean views(@RequestBody Rol_Usuario ru) {
+        return rus.addRol_Usuario(ru);
     }
 
-    @DeleteMapping("/delete/{val}")
-    public String delete(@PathVariable Integer ru) {
-        repo.deleteById(ru);
-        return "Id : " + ru + " delete";
+    @DeleteMapping("/delete/{id_RolUsuario}")
+    public boolean delete(@PathVariable("id_RolUsuario") int ru) {
+        return rus.deleteById(ru);
     }
 
 }//fin()

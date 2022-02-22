@@ -1,6 +1,7 @@
 package spring.boot.backend.modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -20,7 +23,7 @@ public class Periodo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_periodo", unique = true)
-    Integer id_periodo;
+    int id_periodo;
 
     @Column(name = "actividades")
     private String actividades;
@@ -29,9 +32,9 @@ public class Periodo {
     @Column(name = "fecha_activiti")
     private Date fecha_activiti;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "fecha_creacion")
-    private Date fecha_creacion;
+    private Calendar fecha_creacion;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "fecha_inicio")
@@ -53,25 +56,14 @@ public class Periodo {
     private Malla id_malla;
 
     public Periodo() {
+        super();
     }
 
-    public Periodo(Integer id_periodo, String actividades, Date fecha_activiti, Date fecha_creacion, Date fecha_inicio, Date fecha_fin, Double costo_mensualidad, Double costo_matricula, Malla id_malla) {
-        this.id_periodo = id_periodo;
-        this.actividades = actividades;
-        this.fecha_activiti = fecha_activiti;
-        this.fecha_creacion = fecha_creacion;
-        this.fecha_inicio = fecha_inicio;
-        this.fecha_fin = fecha_fin;
-        this.costo_mensualidad = costo_mensualidad;
-        this.costo_matricula = costo_matricula;
-        this.id_malla = id_malla;
-    }
-
-    public Integer getId_periodo() {
+    public int getId_periodo() {
         return id_periodo;
     }
 
-    public void setId_periodo(Integer id_periodo) {
+    public void setId_periodo(int id_periodo) {
         this.id_periodo = id_periodo;
     }
 
@@ -91,11 +83,11 @@ public class Periodo {
         this.fecha_activiti = fecha_activiti;
     }
 
-    public Date getFecha_creacion() {
+    public Calendar getFecha_creacion() {
         return fecha_creacion;
     }
 
-    public void setFecha_creacion(Date fecha_creacion) {
+    public void setFecha_creacion(Calendar fecha_creacion) {
         this.fecha_creacion = fecha_creacion;
     }
 
@@ -137,11 +129,6 @@ public class Periodo {
 
     public void setId_malla(Malla id_malla) {
         this.id_malla = id_malla;
-    }
-
-    @Override
-    public String toString() {
-        return "Periodo{" + "id_periodo=" + id_periodo + ", actividades=" + actividades + ", fecha_activiti=" + fecha_activiti + ", fecha_creacion=" + fecha_creacion + ", fecha_inicio=" + fecha_inicio + ", fecha_fin=" + fecha_fin + ", costo_mensualidad=" + costo_mensualidad + ", costo_matricula=" + costo_matricula + ", id_malla=" + id_malla + '}';
     }
 
 }//fin()

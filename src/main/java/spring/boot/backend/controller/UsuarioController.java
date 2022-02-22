@@ -1,7 +1,6 @@
 package spring.boot.backend.controller;
 
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,40 +10,39 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import spring.boot.backend.interfaces.UsuarioRepository;
 import spring.boot.backend.modelo.Usuario;
+import spring.boot.backend.service.UsuarioService;
 
 @RestController
 @RequestMapping(path = "/usuario")
 public class UsuarioController {
 
     @Autowired
-    private UsuarioRepository repo;
+    private UsuarioService us;
 
     @PostMapping("/add")
-    public Usuario add(@RequestBody Usuario u) {
-        return repo.save(u);
+    public boolean add(@RequestBody Usuario u) {
+        return us.addUsuario(u);
     }
 
     @GetMapping("/views")
     public List<Usuario> views() {
-        return repo.findAll();
+        return us.list();
     }
 
     @GetMapping("/views/{val}")
-    public Optional<Usuario> views(@PathVariable Integer val) {
-        return repo.findById(val);
+    public Usuario views(@PathVariable int val) {
+        return us.findById(val);
     }
 
     @PutMapping("/update")
-    public Usuario views(@RequestBody Usuario u) {
-        return repo.save(u);
+    public boolean views(@RequestBody Usuario u) {
+        return us.addUsuario(u);
     }
 
-    @DeleteMapping("/delete/{val}")
-    public String delete(@PathVariable Integer u) {
-        repo.deleteById(u);
-        return "Id : " + u + " delete";
+    @DeleteMapping("/delete/{id_usuario}")
+    public boolean delete(@PathVariable("id_usuario") int u) {
+        return us.deleteById(u);
     }
 
 }//fin()
