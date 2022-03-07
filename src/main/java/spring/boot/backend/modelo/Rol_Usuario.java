@@ -17,8 +17,8 @@ public class Rol_Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_RolUsuario", unique = true)
-    int id_RolUsuario;
+    @Column(name = "id_rol_usuario", unique = true)
+    int id_rol_usuario;
 
     @Column(name = "estado")
     private Boolean estado;
@@ -37,12 +37,12 @@ public class Rol_Usuario {
         super();
     }
 
-    public int getId_RolUsuario() {
-        return id_RolUsuario;
+    public int getId_rol_usuario() {
+        return id_rol_usuario;
     }
 
-    public void setId_RolUsuario(int id_RolUsuario) {
-        this.id_RolUsuario = id_RolUsuario;
+    public void setId_rol_usuario(int id_rol_usuario) {
+        this.id_rol_usuario = id_rol_usuario;
     }
 
     public Boolean getEstado() {

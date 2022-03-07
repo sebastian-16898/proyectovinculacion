@@ -10,40 +10,39 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import spring.boot.backend.modelo.Rol_Usuario;
-import spring.boot.backend.service.Rol_UsuarioService;
+import spring.boot.backend.modelo.Horario;
+import spring.boot.backend.service.HorarioService;
 
 @RestController
-@RequestMapping(path = "/rolusuario")
-public class Rol_UsuarioController {
+@RequestMapping(path = "/horario")
+public class HorarioController {
 
     @Autowired
-    private Rol_UsuarioService rus;
+    private HorarioService hs;
 
     @PostMapping("/add")
-    public boolean add(@RequestBody Rol_Usuario ru) {
-        return rus.addRol_Usuario(ru);
+    public boolean add(@RequestBody Horario h) {
+        return hs.addHorario(h);
     }
 
     @GetMapping("/views")
-    public List<Rol_Usuario> views() {
-        return rus.list();
+    public List<Horario> views() {
+        return hs.list();
     }
 
     @GetMapping("/views/{val}")
-    public Rol_Usuario views(@PathVariable int val) {
-        return rus.findById(val);
+    public Horario views(@PathVariable int val) {
+        return hs.findById(val);
     }
 
     @PutMapping("/update")
-    public boolean views(@RequestBody Rol_Usuario ru) {
-        return rus.addRol_Usuario(ru);
+    public boolean views(@RequestBody Horario h) {
+        return hs.addHorario(h);
     }
 
-    @DeleteMapping("/delete/{id_rol_usuario}")
-    public boolean delete(@PathVariable("id_rol_usuario") int ru) {
-        return rus.deleteById(ru);
+    @DeleteMapping("/delete/{id_horario}")
+    public boolean delete(@PathVariable("id_horario") int h) {
+        return hs.deleteById(h);
     }
 
 }//fin()
-

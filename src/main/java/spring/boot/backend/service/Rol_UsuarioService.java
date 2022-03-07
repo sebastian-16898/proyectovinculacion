@@ -32,7 +32,7 @@ public class Rol_UsuarioService {
 
     public boolean deleteById(int ru) {
         Rol_Usuario rol_Usuario = rur.FindById(ru);
-        if (rol_Usuario.getId_RolUsuario() > 0) {
+        if (rol_Usuario.getId_rol_usuario() > 0) {
             rur.delete(rol_Usuario);
             return true;
         } else {

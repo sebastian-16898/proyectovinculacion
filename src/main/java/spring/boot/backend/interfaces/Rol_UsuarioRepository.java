@@ -8,7 +8,7 @@ import spring.boot.backend.modelo.Rol_Usuario;
 @Repository
 public interface Rol_UsuarioRepository extends JpaRepository<Rol_Usuario, Integer> {
 
-    @Query(value = "SELECT * FROM Rol_Usuario WHERE id_RolUsuario=?1", nativeQuery = true)
-    Rol_Usuario FindById(int id_RolUsuario);
+    @Query(value = "SELECT * FROM Rol_Usuario WHERE id_rol_usuario=?1", nativeQuery = true)
+    Rol_Usuario FindById(int id_rol_usuario);
 
 }//fin()
